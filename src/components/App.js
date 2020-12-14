@@ -17,8 +17,8 @@ class App extends Component {
     }));
   };
 
-  countTotalFeedback = () => {
-    Object.values(this.state).reduce((acc, option) => acc + option, 0);
+  countTotalFeedback = state => {
+    Object.values(state).reduce((acc, option) => acc + option, 0);
   };
 
   countPositiveFeedbackPercentage = () => {
@@ -28,8 +28,9 @@ class App extends Component {
   render() {
     const { good, neutral, bad } = this.state;
 
-    const total = this.countTotalFeedback();
-
+    const feedbackQuantity = this.countTotalFeedback(this.state);
+    console.log('this is const feedbackQuantity in render', feedbackQuantity);
+    const percentage = this.countPositiveFeedbackPercentage(this.state);
     return (
       <div>
         <Section title="Please leave your feedback">
@@ -43,8 +44,8 @@ class App extends Component {
             good={good}
             neutral={neutral}
             bad={bad}
-            total={this.countTotalFeedback(this.state)}
-            positivePercentage={this.countPositiveFeedbackPercentage}
+            total={feedbackQuantity}
+            positivePercentage={percentage}
           />
         </Section>
       </div>
