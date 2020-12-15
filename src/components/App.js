@@ -3,6 +3,7 @@ import shortid from 'shortid';
 import FeedbackOptions from './FeedbackOptions';
 import Section from './Section';
 import Statistics from './Statistics';
+import Notification from './Notification';
 
 class App extends Component {
   state = {
@@ -42,13 +43,17 @@ class App extends Component {
           />
         </Section>
         <Section title="Statistics">
-          <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={feedbackQuantity}
-            positivePercentage={percentage}
-          />
+          {feedbackQuantity > 0 ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={feedbackQuantity}
+              positivePercentage={percentage}
+            />
+          ) : (
+            <Notification message="No feedback given" />
+          )}
         </Section>
       </div>
     );

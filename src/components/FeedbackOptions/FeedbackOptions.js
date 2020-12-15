@@ -1,8 +1,9 @@
 import React from 'react';
+import s from './FeedbackOptions.module.css';
 
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
-    <div>
+    <div className={s.Container}>
       {options.map(option => (
         <button
           type="button"
